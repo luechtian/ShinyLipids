@@ -296,11 +296,17 @@ uiBody <- function() {
                                   width  = 12,
                                   status = "primary",
                                   footer = "Brush and doubleclick to zoom",
-                                  plotOutput(
+                                  
+                                  div(
+                                    style = "position:relative",
+                                    plotOutput(
                                     "mainPlot",
                                     height   = 600,
                                     dblclick = "mainPlotDoubleClick",
-                                    brush    = brushOpts(id = "mainPlotBrush", resetOnNew = TRUE)
+                                    brush    = brushOpts(id = "mainPlotBrush", resetOnNew = TRUE),
+                                    hover = hoverOpts("plot_hover", delay = 10, delayType = "debounce")
+                                    ),
+                                    uiOutput("hover_info")
                                   )
                                 )
                               ),
